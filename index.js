@@ -21,7 +21,7 @@ const post = (message) => {
             console.log(tweet);
     })
         .catch(function (error) {
-            throw error;
+            console.log(error);
     })
 }
 
@@ -32,6 +32,7 @@ function sleep(ms) {
 } 
 
 
+var tweet = 0
 async function updateTimeLine() {
     console.log('Posting Tweet');
     while(true){
@@ -44,11 +45,13 @@ async function updateTimeLine() {
             output += "\nCases Today: " + trueData.total_new_cases_today
             output += "\nDeaths Today: " + trueData.total_new_deaths_today
             output += "\nSTAY SAFE, and follow for more updates."
-            //console.log(output)
+            output += "\nMsg #" + tweet
+            tweet++
+            console.log(output)
             post(output)
         }).catch(err => {console.log(err)})
         console.log("Waiting") 
-        await sleep(1000)
+        await sleep(10000)
     }
 }
 
