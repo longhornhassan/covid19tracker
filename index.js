@@ -1,6 +1,19 @@
 var Twitter = require('twitter');
 const axios = require('axios').default;
- 
+const express = require('express'); 
+const app = express(); 
+
+//setting up port
+var port = process.env.PORT || 8080;
+app.listen(port, () => {
+    console.log("Server is up"); 
+})
+
+//just to make sure it's up
+app.get('/', (req, res) => {
+    res.status(200).send("This is bot is still up!");
+})
+
 var client = new Twitter({
   consumer_key: 'Boniqvl6SGL6yaq9sn8ZqIOhb',
   consumer_secret: 'yws4HCJYx5WVdVdNUV0tJ6DcCv5qPb62sLd6y3ptSg2PIrADej',
