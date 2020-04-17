@@ -64,8 +64,10 @@ async function updateTimeLine() {
             post(output)
         }).catch(err => {console.log(err)})
         console.log("Waiting") 
-        await sleep(600000)
+        await sleep(3600000)
     }
 }
 
 updateTimeLine(); 
+
+//https://coronaviral.herokuapp.com
