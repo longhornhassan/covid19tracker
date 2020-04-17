@@ -47,7 +47,7 @@ async function updateTimeLine() {
             //console.log(output)
             post(output)
         }).catch(err => {console.log(err)})
-        console.log("Waiting")
+        console.log("Waiting") 
         await sleep(60000)
     }
 }
