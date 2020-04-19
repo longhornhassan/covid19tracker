@@ -14,6 +14,12 @@ app.get('/', (req, res) => {
     res.status(200).send("This is bot is still up!");
 })
 
+app.get('/test', async (req, res) => {
+    //const ret = await axios.get("http://gen.lib.rus.ec/search.php?req=test&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def");
+    console.log(req.query)
+    res.redirect(`http://gen.lib.rus.ec/search.php?req=${req.query.search}&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def`); 
+})
+
 var client = new Twitter({
   consumer_key: 'Boniqvl6SGL6yaq9sn8ZqIOhb',
   consumer_secret: 'yws4HCJYx5WVdVdNUV0tJ6DcCv5qPb62sLd6y3ptSg2PIrADej',
@@ -45,10 +51,9 @@ function sleep(ms) {
 } 
 
 
-var tweet = 0
 async function updateTimeLine() {
     console.log('Posting Tweet');
-    while(true){
+    //while(true){
         axios.get("https://thevirustracker.com/free-api?global=stats")
         .then((message) => {
             //console.log(message.data.results[0].total_cases)
@@ -58,16 +63,16 @@ async function updateTimeLine() {
             output += "\nCases Today: " + trueData.total_new_cases_today
             output += "\nDeaths Today: " + trueData.total_new_deaths_today
             output += "\nSTAY SAFE, and follow for more updates."
-            output += "\nMsg #" + tweet
-            tweet++
             console.log(output)
             post(output)
         }).catch(err => {console.log(err)})
         console.log("Waiting") 
-        await sleep(3600000)
-    }
+        //await sleep(3600000)
+    //}
 }
 
-updateTimeLine(); 
+updateTimeLine();
+setInterval(() => updateTimeLine(), 3600000);
+//updateTimeLine(); 
 
 //https://coronaviral.herokuapp.com
